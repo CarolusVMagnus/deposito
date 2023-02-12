@@ -1,47 +1,75 @@
 package cuentas;
 
 /**
- * Clase que representa calse principal.
+ * Clase que representa una cuenta bancaria.
  * 
  * @author carlo
  * @version 1.0
  */
- 
-public class Main {
-    public static void main(String[] args) {
-		/** Agrega un elemento al constructor CCuenta*/
-        CCuenta cuenta1;
-        double saldoActual;
+public class CCuenta {
 
-        cuenta1 = new CCuenta("Antonio López", "1000-2365-85-1230456789", 2500, 0);
-		/** Se opera con la cuenta1*/
-        operativa_cuenta(cuenta1, 0);
+    /** Nombre del titular de la cuenta */
+    private String nombre;
+    /** Número de cuenta */
+    private String cuenta;
+    /** Saldo de la cuenta */
+    private double saldo;
+    /** Tipo de interés de la cuenta */
+    private double tipoInteres;
+
+    /**
+     * Constructor CCuenta
+     */
+    public CCuenta() {
     }
 
     /**
-     * Realiza operaciones con una cuenta
-     * @param cuenta objeto de la clase CCuenta
-     * @param cantidad a ingresar o retirar
+     * Constructor  CCuenta
+     * 
+     * @param nom Nombre del titular de la cuenta
+     * @param cue Número de cuenta
+     * @param sal Saldo de la cuenta
+     * @param tipo Tipo de interés de la cuenta
      */
-	 
-    public static void operativa_cuenta(CCuenta cuenta, float cantidad) {
-        double saldoActual = cuenta.estado();
-        System.out.println("El saldo actual es " + saldoActual);
+    public CCuenta(String nom, String cue, double sal, double tipo) {
+        nombre = nom;
+        cuenta = cue;
+        saldo = sal;
+		tipoInteres = tipo;
+    }
 
-        try {
-            System.out.println("Intentando retirar " + cantidad + "...");
-            cuenta.retirar(cantidad);
-            System.out.println("Retiro realizado con éxito");
-        } catch (Exception e) {
-            System.out.println("Fallo al retirar");
-        }
+    /**
+     * Método que devuelve el saldo de la cuenta
+     * 
+     * @return Saldo de la cuenta
+     */
+    public double estado() {
+        return saldo;
+    }
 
-        try {
-            System.out.println("Intentando ingresar " + cantidad + "...");
-            cuenta.ingresar(cantidad);
-            System.out.println("Ingreso realizado con éxito");
-        } catch (Exception e) {
-            System.out.println("Fallo al ingresar");
-        }
+    /**
+     * Método que permite ingresar dinero en la cuenta
+     * 
+     * @param cantidad Cantidad a ingresar en la cuenta
+     * @throws Exception si la cantidad a ingresar es negativa
+     */
+    public void ingresar(double cantidad) throws Exception {
+        if (cantidad < 0)
+            throw new Exception("No se puede ingresar una cantidad negativa");
+        saldo = saldo + cantidad;
+    }
+
+    /**
+     * Método que permite retirar dinero de la cuenta
+     * 
+     * @param cantidad Cantidad a retirar de la cuenta
+     * @throws Exception si la cantidad a retirar es negativa o mayor que el saldo de la cuenta
+     */
+    public void retirar(double cantidad) throws Exception {
+        if (cantidad <= 0)
+            throw new Exception("No se puede retirar una cantidad negativa");
+        if (estado() < cantidad)
+            throw new Exception("No se hay suficiente saldo");
+        saldo = saldo - cantidad;
     }
 }
