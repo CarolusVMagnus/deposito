@@ -37,7 +37,47 @@ public class CCuenta {
         saldo = sal;
 		tipoInteres = tipo;
     }
+    /**
+     * Devuelve el nombre del titular de la cuenta
+     * @return nombre del titular
+     */
+    public String getNombre() {
+        return nombre;
+    }
 
+    /**
+     * Establece el nombre del titular de la cuenta
+     * @param nombre nombre del titular
+     */
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+	/**
+ 	* Devuelve el numero de cuenta.
+ 	* 
+ 	* @return Devuelve el numero de cuenta.
+ 	*/
+	public String getCuenta() {
+	    return cuenta;
+	}
+
+	/**
+	 * Establece el numero de cuenta.
+	 * 
+	 * @param Establece el numero de cuenta.
+	 */
+	public void setCuenta(String cuenta) {
+	    this.cuenta = cuenta;
+	}
+
+	/**
+	 * Devuelve el balance actual.
+	 * 
+	 * @return  Devuelve el balance actual.
+	 */
+	public double getSaldo() {
+	    return saldo;
+	}
     /**
      * Método que devuelve el saldo de la cuenta
      * 
